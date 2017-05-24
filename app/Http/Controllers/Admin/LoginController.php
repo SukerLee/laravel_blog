@@ -19,25 +19,27 @@ class LoginController extends CommonController
         if(strtoupper($input['code']) != $_code){
                
             return back()->with('msg','驗證碼錯誤');
-        }else{
-             $user = \App\Http\Model\User::first();
-                echo $input['user_name']; die;
-               if($user->user_name == $input['user_name'] && Crypt::decrypt($user->user_pass) == $input['user_pass'])
-               {
-
-               }else{
-                    return back()->with('msg','帳號或密碼錯誤');
-               }
         }
-       
+        $user = \App\Http\Model\User::first();   
+        if($user->user_name != $input['user_name'] || Crypt::decrypt($user->user_pass) != $input['user_pass'])
+        {
+            return back()->with('msg','帳號或密碼錯誤');
+        }
+   
+        session(['user'=>$user]);
+        return redirect('admin/index');
      }else{
-       
-         
-     }  
-     return view('admin.login');
-       
+       return view('admin.login');      
+     }
+     //dd($_SERVER);
    }
    
+   public function logout(){
+      session(['user'=>NULL]);
+      return redirect('admin/login');
+   }
+
+
    public function code() {
        $code = New \Code;
        
