@@ -7,17 +7,23 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use \App\Http\Model\User;
+use Illuminate\Support\Facades\Storage;
 
 
 class IndexController extends CommonController
 {
     
     public function index() {
-     echo "1213";   
-     $pdo = DB::connection()->getPdo();
-     //dd($pdo);
-     
-     return view('admin.index');
+     $disk = Storage::disk('gcs');
+        $url = $disk->url('123.jpeg');
+
+        //$disk->copy('123.jpeg', 'go.jpeg');
+        echo "<img src='".$url."'>";
+        
+        
+     //echo $exists = $disk->exists('123.jpg');
+      
+     //return view('admin.index');
     }
     
     

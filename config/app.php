@@ -179,13 +179,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         
-        /*
-         * GaeSupport
-         */
-
-        Shpasser\GaeSupportL5\GaeSupportServiceProvider::class,
+       Superbalist\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::class,
         
-
+        
     ],
 
     /*
