@@ -12,11 +12,15 @@
     <div class="result_title">
         <h3>修改密碼</h3>
         @if(count($errors)>0)
-            @foreach($errors->all() as $error)
-             <div class="mark">
-                 <p>{{$error}}</p>
-             </div>   
+            <div class="mark">
+            @if(is_object($errors))
+            @foreach($errors->all() as $error) 
+                 <p>{{$error}}</p>      
             @endforeach
+            @else 
+                 <p>{{$errors}}</p>
+            @endif
+            </div>  
        @endif
     </div>
 </div>

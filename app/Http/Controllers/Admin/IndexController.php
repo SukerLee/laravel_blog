@@ -14,16 +14,16 @@ class IndexController extends CommonController
 {
     
     public function index() {
-     $disk = Storage::disk('gcs');
-        $url = $disk->url('123.jpeg');
-
-        //$disk->copy('123.jpeg', 'go.jpeg');
-        echo "<img src='".$url."'>";
-        
-        
-     //echo $exists = $disk->exists('123.jpg');
+//     $disk = Storage::disk('gcs');
+//        $url = $disk->url('123.jpeg');
+//
+//        $disk->copy('123.jpeg', 'go.jpeg');
+//        echo "<img src='".$url."'>";
+//        
+//        
+//     echo $exists = $disk->exists('123.jpg');
       
-     //return view('admin.index');
+     return view('admin.index');
     }
     
     
@@ -54,7 +54,16 @@ class IndexController extends CommonController
                $_password = \Crypt::decrypt($user->user_pass);
                //echo $_password;
                
-               
+               if($input['password_o'] == $_password){
+                   
+                   $user->user_pass = \Crypt::encrypt($input['password']);
+                   $user->update();
+                   
+                   return back()->with('errors','修改密碼成功');
+                           
+               }else{
+                   return back()->with('errors','原密碼錯誤');
+               }
                
             }else{
                 return back()->withErrors($validator);
