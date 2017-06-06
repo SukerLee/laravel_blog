@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use \Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Input;
 use \Crypt;
 

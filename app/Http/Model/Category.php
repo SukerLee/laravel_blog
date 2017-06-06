@@ -10,11 +10,13 @@ class Category extends Model
     protected $primaryKey = 'cate_id';
     protected $field_name = 'cate_name';
     public $timestamps = false;
-    
-    
-    
+    protected $guarded = [];
+
+
+
+
     public function tree(){
-            $categorys = $this->all();
+            $categorys = $this->orderBy('cate_order','desc')->get();
             return $this->getTree($categorys,'cate_name','cate_id','cate_pid');
     }
 
