@@ -75,7 +75,7 @@
                      
                         <td>
                             <a href="{{url('admin/category/'.$v->cate_id.'/edit')}}">修改</a>
-                            <a href="#">删除</a>
+                            <a href="#" onclick="delCate({{$v->cate_id}})">删除</a>
                         </td>
                     </tr>
                     @endforeach
@@ -125,6 +125,28 @@
                 }else{
                      layer.msg(data.msg, {icon: 5});
                 }
+            });
+        }
+        
+        function delCate(cate_id){
+            layer.confirm('您確定要刪除該筆資料?', {
+              btn: ['確定','取消'] //按钮
+            }, function(){
+//              layer.msg('的确很重要', {icon: 1});
+                $.post("{{url('admin/category')}}/"+cate_id,{'_token':'{{csrf_token()}}','_method':'delete'},function(data){
+                    if(data.status == 0){
+                         location.reload();
+                          layer.msg(data.msg, {icon: 6});  
+                    }else{
+                          layer.msg(data.msg, {icon: 5});  
+                    }
+    
+                })
+            }, function(){
+//              layer.msg('也可以这样', {
+//                time: 20000, //20s后自动关闭
+//                btn: ['明白了', '知道了']
+//              });
             });
         }
     </script>    

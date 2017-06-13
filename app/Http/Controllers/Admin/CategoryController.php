@@ -48,7 +48,7 @@ class CategoryController extends CommonController
                 if($re){
                     return redirect('admin/category');
                 }else{
-                    
+                    return back()->with('error','資料錯誤，請稍後嘗試');
                 }
                
             }else{
@@ -67,18 +67,56 @@ class CategoryController extends CommonController
         
     }
     
-      //get,admin/category     編輯分類
-    public function edit(){
-        
+      //get,admin/category   admin/category/{category}/edit   編輯分類
+    public function edit($cate_id){
+       $categorys = Category::where('cate_pid','0')->get();
+       $field = Category::find($cate_id);
+       
+       return view('admin.category.edit', compact('field','categorys'));
     }
     
-    //put,admin/category      更新分類  
-    public function update(){
-        
+    //put,admin/category   admin/category/{category}       更新分類  
+    public function update($cate_id){
+        $input = (Input::except('_token','_method'));
+       
+        $rules = array(
+              'cate_name'=>'required', 
+              
+            );
+            $message = array(
+              'cate_name.required' => '分類名稱不可為空',
+              
+            );
+            
+        $validator = Validator::make($input,$rules,$message);
+        if($validator->passes()){ 
+            $re = Category::where('cate_id',$cate_id)->update($input);
+            if($re){
+                 return redirect('admin/category');
+            }else{
+                return back()->with('error','資料錯誤，請稍後嘗試');
+            }
+        }else{
+                return back()->withErrors($validator);
+               
+        }    
+
     }
      //DELETE                 刪除分類
-    public function destroy(){
+    public function destroy($cate_id){
+        $re = Category::where('cate_id',$cate_id)->delete();
+        Category::where('cate_pid',$cate_id)->update(['cate_pid'=>0]);
         
+        if($re){
+            $data = ['status'=>0,
+                'msg' => '資料刪除成功',
+                ]; 
+        }else{
+              $data = ['status'=>1,
+                'msg' => '資料刪除失敗',
+                ]; 
+        }
+        return $data;
     }   
 
     
