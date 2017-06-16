@@ -31,7 +31,7 @@ class CategoryController extends CommonController
     //POST,admin/category  新增分類提交
     public function store(){
         
-         if($input = Input::except('_token')){
+        if($input = Input::except('_token')){
            
             $rules = array(
               'cate_name'=>'required', 
@@ -40,9 +40,8 @@ class CategoryController extends CommonController
             $message = array(
               'cate_name.required' => '分類名稱不可為空',
               
-            );
-            
-           $validator = Validator::make($input,$rules,$message);
+            );   
+            $validator = Validator::make($input,$rules,$message);
             if($validator->passes()){
                 $re = Category::create($input);
                 if($re){
