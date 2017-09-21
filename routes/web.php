@@ -32,7 +32,14 @@ Route::group(['middleware' => ['web','admin.login'],'prefix'=>'admin','namespace
     Route::resource('category', 'CategoryController');
     
     Route::resource('article', 'ArticleController');
+    Route::resource('links', 'LinksController');
+    Route::post('links/changeorder', 'LinksController@changeOrder');
     
+    Route::resource('navs', 'NavsController');
+    Route::post('navs/changeorder', 'NavsController@changeOrder');
+    
+    Route::resource('config', 'ConfigController');
+     
     Route::any('upload','CommonController@upload');
 });
 
