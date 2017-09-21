@@ -31,7 +31,7 @@ class CategoryController extends CommonController
     //POST,admin/category  新增分類提交
     public function store(){
         
-        if($input = Input::except('_token')){
+        if($input = Input::except('_token')){   //除了_token以外，其他值都取得
            
             $rules = array(
               'cate_name'=>'required', 
@@ -52,7 +52,6 @@ class CategoryController extends CommonController
                
             }else{
                 return back()->withErrors($validator);
-               
             }
             
             //dd($intput);
@@ -61,7 +60,7 @@ class CategoryController extends CommonController
     }
     
     
-        //get,admin/category  顯示單個分類
+    //get,admin/category  顯示單個分類
     public function show(){
         
     }
@@ -101,7 +100,7 @@ class CategoryController extends CommonController
         }    
 
     }
-     //DELETE                 刪除分類
+    //DELETE                 刪除分類
     public function destroy($cate_id){
         $re = Category::where('cate_id',$cate_id)->delete();
         Category::where('cate_pid',$cate_id)->update(['cate_pid'=>0]);

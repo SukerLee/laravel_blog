@@ -180,8 +180,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         
        Superbalist\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::class,
-        
-        
+       Barryvdh\Elfinder\ElfinderServiceProvider::class,
+       Jenky\LaravelPlupload\PluploadServiceProvider::class,
     ],
 
     /*
@@ -196,7 +196,7 @@ return [
     */
 
     'aliases' => [
-
+        
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -230,7 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        
     ],
 
 ];

@@ -19,7 +19,7 @@ Route::any('admin/login','Admin\LoginController@login');
 
 Route::get('admin/crypt','Admin\LoginController@crypt');
 Route::get('admin/code','Admin\LoginController@code');
-
+Route::get('admin','Admin\IndexController@index');
 
 Route::group(['middleware' => ['web','admin.login'],'prefix'=>'admin','namespace'=>'Admin'], function (){
     
@@ -30,5 +30,9 @@ Route::group(['middleware' => ['web','admin.login'],'prefix'=>'admin','namespace
     
     Route::post('cate/changeorder', 'CategoryController@changeOrder');
     Route::resource('category', 'CategoryController');
+    
+    Route::resource('article', 'ArticleController');
+    
+    Route::any('upload','CommonController@upload');
 });
 

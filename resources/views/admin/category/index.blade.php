@@ -32,12 +32,14 @@
     <!--搜索结果页面 列表 开始-->
     <form action="#" method="post">
         <div class="result_wrap">
+            <div class="result_title">
+            <h3>分類管理</h3>
+            </div>
             <!--快捷导航 开始-->
             <div class="result_content">
                 <div class="short_wrap">
                     <a href="{{url('admin/category/create')}}"><i class="fa fa-plus"></i>新增分類</a>
-                    <a href="#"><i class="fa fa-recycle"></i>批量删除</a>
-                    <a href="#"><i class="fa fa-refresh"></i>更新排序</a>
+                    <a href="{{url('admin/category/')}}"><i class="fa fa-recycle"></i>全部分類</a>
                 </div>
             </div>
             <!--快捷导航 结束-->
@@ -82,7 +84,7 @@
                 </table>
 
 
-<div class="page_nav">
+<!--<div class="page_nav">
 <div>
 <a class="first" href="/wysls/index.php/Admin/Tag/index/p/1.html">第一页</a> 
 <a class="prev" href="/wysls/index.php/Admin/Tag/index/p/7.html">上一页</a> 
@@ -95,11 +97,11 @@
 <a class="end" href="/wysls/index.php/Admin/Tag/index/p/11.html">最后一页</a> 
 <span class="rows">11 条记录</span>
 </div>
-</div>
+</div>-->
 
 
 
-                <div class="page_list">
+<!--                <div class="page_list">
                     <ul>
                         <li class="disabled"><a href="#">&laquo;</a></li>
                         <li class="active"><a href="#">1</a></li>
@@ -109,7 +111,7 @@
                         <li><a href="#">5</a></li>
                         <li><a href="#">&raquo;</a></li>
                     </ul>
-                </div>
+                </div>-->
             </div>
         </div>
     </form>
