@@ -8,7 +8,7 @@
         <script type="text/javascript" src="{{asset('/resources/views/admin/style/js/jquery.js')}}"></script>
         <script type="text/javascript" src="{{asset('/resources/views/admin/style/js/ch-ui.admin.js')}}"></script>
         <script type="text/javascript" src="{{asset('/resources/org/layer/layer.js')}}"></script>
-        <script type="text/javascript" src="{{asset('/resources/org/tinymce/tinymce.min.js')}}"></script>
+        
         <script src="{{asset('/resources/org/uploadify/jquery.uploadify.min.js')}}" type="text/javascript"></script>
     </head>
     <body>

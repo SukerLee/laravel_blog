@@ -12,7 +12,27 @@ class ConfigController extends Controller
     //get,admin/category  導航列表
     public function index(){
         $config = Config::orderBY('conf_order','DESC')->paginate(10);
-       
+        foreach ($config as $k=>$v){
+            switch ($v->field_type){
+            case 'input':
+                $config[$k]->_html = '<input type="text" class="lg" name="conf_content[]" value="'.$v->conf_content.'">';
+                break;
+            case 'textarea':
+                $config[$k]->_html = '<textarea class="lg" name="conf_content[]">'.$v->conf_content.'</textarea>';
+                break;
+            case 'radio':
+                $arr = explode(',',  $v->field_value);
+                $str = "";
+                foreach ($arr as $key => $val){
+                    $_arr = explode('|', $val);
+                    $c = ($v->conf_content == $_arr[0])?'checked':'';
+                    $str .= '<input type="radio" name="conf_content[]" value="'.$_arr[0].'" '.$c.' >'.$_arr[1].'　';
+                }
+                $config[$k]->_html = $str;
+                break;
+            }
+        }
+        
         return view('admin.config.index')->with('data',$config);
     }
     
@@ -28,12 +48,12 @@ class ConfigController extends Controller
         if($input = Input::except('_token')){   //除了_token以外，其他值都取得
            
             $rules = array(
-              'conf_url'=>'required', 
               'conf_name'=>'required', 
+              'conf_title'=>'required', 
             );
             $message = array(
-              'conf_url.required' => '地址不可為空',
               'conf_name.required' => '名稱不可為空',
+              'conf_title.required' => '標題不可為空',
               
             );   
             $validator = Validator::make($input,$rules,$message);
@@ -64,20 +84,20 @@ class ConfigController extends Controller
     public function update($conf_id){
         $input = (Input::except('_token','_method'));
        
-            $rules = array(
-              'conf_url'=>'required', 
+         $rules = array(
               'conf_name'=>'required', 
+              'conf_title'=>'required', 
             );
             $message = array(
-              'conf_url.required' => '地址不可為空',
               'conf_name.required' => '名稱不可為空',
+              'conf_title.required' => '標題不可為空',
               
-            );   
-            
+            );    
         $validator = Validator::make($input,$rules,$message);
         if($validator->passes()){ 
             $re = Config::where('conf_id',$conf_id)->update($input);
             if($re){
+                 $this->putFile();
                  return redirect('admin/config');
             }else{
                 return back()->with('error','資料錯誤，請稍後嘗試');
@@ -94,6 +114,7 @@ class ConfigController extends Controller
         $re = Config::where('conf_id',$conf_id)->delete();
         
         if($re){
+            $this->putFile();
             $data = ['status'=>0,
                 'msg' => '資料刪除成功',
                 ]; 
@@ -103,8 +124,19 @@ class ConfigController extends Controller
                 ]; 
         }
         return $data;
-    }   
+    }  
     
+    //把設定寫入檔案
+    public function putFile() {
+//        echo \Illuminate\Support\Facades\Config::get('web.web_title');
+        $config = Config::pluck('conf_content','conf_name')->all();
+        $path = base_path().'/config/web.php';
+        $str = '<?php return '.var_export($config,true).' ; ';
+        file_put_contents($path,$str);
+
+    }
+
+
     public function changeOrder() {
         $input = Input::all();
         $conf = Config::find($input['conf_id']);
@@ -126,4 +158,15 @@ class ConfigController extends Controller
         return $data;
         //dd($input);
     }
+    
+    public function changeContent() {
+        $input = Input::all();
+        foreach($input['conf_id'] as $k=>$v){
+            Config::where('conf_id',$v)->update(['conf_content'=>$input['conf_content'][$k]]);
+        }
+        //dd($input);
+        $this->putFile();
+          return back()->with('errors','網站設置更新成功！');
+    }
+
 }

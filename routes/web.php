@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/test','IndexController@index');
+Route::get('/','Home\IndexController@index');
+Route::get('/cate','Home\IndexController@cate');
+Route::get('/art','Home\IndexController@article');
 
 Route::any('admin/login','Admin\LoginController@login');
 
@@ -38,8 +40,11 @@ Route::group(['middleware' => ['web','admin.login'],'prefix'=>'admin','namespace
     Route::resource('navs', 'NavsController');
     Route::post('navs/changeorder', 'NavsController@changeOrder');
     
+    Route::get('config/putfile', 'ConfigController@putFile');
     Route::resource('config', 'ConfigController');
-     
+    Route::post('config/changeorder', 'ConfigController@changeOrder');
+    Route::post('config/changecontent', 'ConfigController@changeContent');
+    
     Route::any('upload','CommonController@upload');
 });
 
