@@ -133,9 +133,7 @@ class ConfigController extends Controller
         $path = base_path().'/config/web.php';
         $str = '<?php return '.var_export($config,true).' ; ';
         file_put_contents($path,$str);
-
     }
-
 
     public function changeOrder() {
         $input = Input::all();
