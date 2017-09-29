@@ -26,6 +26,9 @@ class IndexController extends CommonController
     public function cate($cate_id){
        $field =  \App\Http\Model\Category::find($cate_id);
        
+        //查看次數增加
+        Category::where('cate_id',$cate_id)->increment('cate_view');
+       
        //圖文列表(分頁):4
        $data = Article::where('cate_id',$cate_id)->orderBy('art_time','DESC')->paginate(4);
        
@@ -37,7 +40,14 @@ class IndexController extends CommonController
     
     public function article($art_id){
         $field = Article::where('art_id',$art_id)->join('category','article.cate_id','=','category.cate_id')->first();
-        //dd($field);
-        return view('home.news', compact('field'));
+        
+        //查看次數增加
+        Article::where('art_id',$art_id)->increment('art_view');
+        
+        $article['pre'] = Article::where('art_id','<',$art_id)->orderBy('art_id','desc')->first();
+        $article['next'] = Article::where('art_id','>',$art_id)->orderBy('art_id','asc')->first();
+        $data = Article::where('cate_id',$field->cate_id)->take(6)->get();
+        //dd($article);
+        return view('home.news', compact('field','article','data'));
     }
 }

@@ -10,7 +10,7 @@ use App\Http\Model\Article;
 class CommonController extends Controller
 {
     public function __construct() {
-        $navs = Navs::all();
+        $navs = Navs::orderBy('nav_order','DESC')->get();
         
         //點擊數量最高的文章6篇
         $hot = Article::orderBy('art_view','DESC')->take(5)->get();
