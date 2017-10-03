@@ -3,7 +3,7 @@
 	<!--面包屑导航 开始-->
 	<div class="crumb_warp">
 		<!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-		<i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首页</a> &raquo; 系統資訊
+            <i class="fa fa-home"></i> <a href="{{url('admin/info')}}">首頁</a> &raquo; 系統資訊
 	</div>
 	<!--面包屑导航 结束-->
 	
@@ -33,10 +33,10 @@
                     <label>操作系统</label><span>{{PHP_OS}}</span>
                 </li>
                 <li>
-                    <label>运行环境</label><span>{{$_SERVER['SERVER_SOFTWARE']}}</span>
+                    <label>運行環境</label><span>{{$_SERVER['SERVER_SOFTWARE']}}</span>
                 </li>
                 <li>
-                    <label>PHP运行方式</label><span>apache2handler</span>
+                    <label>PHP運行方式</label><span>apache2handler</span>
                 </li>
                 <li>
                     <label>版本</label><span>v-1.0</span>
@@ -48,7 +48,7 @@
                     <label>台北時間</label><span><?php echo date('Y年m月d日 H時i分s秒')?></span>
                 </li>
                 <li>
-                    <label>服务器域名/IP</label><span>{{$_SERVER['SERVER_NAME']}} [ {{$_SERVER['SERVER_ADDR']}} ]</span>
+                    <label>服務器域名/IP</label><span>{{$_SERVER['SERVER_NAME']}} [ {{$_SERVER['SERVER_ADDR']}} ]</span>
                 </li>
                 <li>
                     <label>Host</label><span>{{$_SERVER['SERVER_ADDR']}} </span>
@@ -60,7 +60,7 @@
 
     <div class="result_wrap">
         <div class="result_title">
-            <h3>使用帮助</h3>
+            <h3>使用幫助</h3>
         </div>
         <div class="result_content">
             <ul>

@@ -3,7 +3,7 @@
     <!--面包屑导航 开始-->
 <div class="crumb_warp">
     <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
-    <i class="fa fa-home"></i> <a href="#">首页</a> &raquo; 修改密码
+    <i class="fa fa-home"></i> <a href="#">首頁</a> &raquo; 修改密碼
 </div>
 <!--面包屑导航 结束-->
 
@@ -36,19 +36,19 @@
             <tr>
                 <th width="120"><i class="require">*</i>原密码：</th>
                 <td>
-                    <input type="password" name="password_o"> </i>请输入原始密码</span>
+                    <input type="password" name="password_o"> </i>請輸入原始密碼</span>
                 </td>
             </tr>
             <tr>
-                <th><i class="require">*</i>新密码：</th>
+                <th><i class="require">*</i>新密碼：</th>
                 <td>
-                    <input type="password" name="password"> </i>新密码6-20位</span>
+                    <input type="password" name="password"> </i>新密碼6-20位</span>
                 </td>
             </tr>
             <tr>
-                <th><i class="require">*</i>确认密码：</th>
+                <th><i class="require">*</i>確認密碼：</th>
                 <td>
-                    <input type="password" name="password_confirmation"> </i>再次输入密码</span>
+                    <input type="password" name="password_confirmation"> </i>再次輸入密碼</span>
                 </td>
             </tr>
             <tr>

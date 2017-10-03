@@ -5,14 +5,14 @@
 		<div class="top_left">
 			<div class="logo">後台管理模板</div>
 			<ul>
-                            <li><a target="_blank" href="{{url('/')}}" class="active">首页</a></li>
-                            <li><a target="main" href="{{url('admin/info')}}">管理页</a></li>
+                            <li><a target="_blank" href="{{url('/')}}" class="active">首頁</a></li>
+                            <li><a target="main" href="{{url('admin/info')}}">管理頁</a></li>
 			</ul>
 		</div>
 		<div class="top_right">
 			<ul>
-				<li>管理员：admin</li>
-				<li><a href="<?= url('admin/pass')?>" target="main">修改密码</a></li>
+				<li>管理員：admin</li>
+				<li><a href="<?= url('admin/pass')?>" target="main">修改密碼</a></li>
 				<li><a href="<?= url('admin/logout')?>">退出</a></li>
 			</ul>
 		</div>
@@ -30,7 +30,7 @@
                 </ul>
             </li>
             <li>
-            	<h3><i class="fa fa-fw fa-cog"></i>系统设置</h3>
+            	<h3><i class="fa fa-fw fa-cog"></i>系統設置</h3>
                 <ul class="sub_menu">
                     <li><a href="{{url('admin/navs')}}" target="main"><i class="fa fa-fw fa-navicon"></i>首頁導航</a></li>
                     <li><a href="{{url('admin/config')}}" target="main"><i class="fa fa-fw fa-cubes"></i>網站設置</a></li>
@@ -57,7 +57,7 @@
 
 	<!--底部 开始-->
 	<div class="bottom_box">
-		CopyRight © 2016. Powered By <a href="http://www.chenhua.club">http://www.chenhua.club</a>.
+		CopyRight © <?= date('Y')?>. Powered By <a href=""></a>.
 	</div>
 	<!--底部 结束-->
 @endsection
